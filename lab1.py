@@ -46,6 +46,7 @@ def update_entry():
 
 def save_entry(key):
     if key in users.get(0, "end"):
+        key="22304-korzhuk-" + key
         conn.delete(key)
         conn.set(key, f"{entry1.get()}|{entry2.get()}", ex=1000)
 
@@ -87,8 +88,6 @@ users.bind('<<ListboxSelect>>', lambda event: update_entry())
 lbloutput.place(relx=0.0, rely=0.35)
 for i in range(6):
     users.insert(i, f"Пользователь {i}")
-#    for i in users.get(0, "end"):
-#        conn.delete(i)
 users.select_set(0)
 update_entry()
 
