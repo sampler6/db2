@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 import redis
 
-conn = redis.connection = redis.Redis(host='localhost', password="student")
+conn = redis.Redis(host='localhost', password="student")
 
 
 def update():
