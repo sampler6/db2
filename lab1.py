@@ -1,7 +1,7 @@
 import redis
 import tkinter as tk
 
-conn = redis.connection = redis.Redis(host='localhost', password="student")
+conn = redis.Redis(host='localhost', password="student")
 current_user = ""
 
 
@@ -22,14 +22,13 @@ def show_text():
 
 
 def update_entry():
-    global current_user, entry1, entry2
+    global current_user
     try:
         user = users.selection_get()
     except:
         user = current_user
     if user in users.get(0, "end"):
-        if current_user != "":
-            save_entry(current_user)
+        save_entry(current_user)
         current_user = user
 
         entry1.delete(0, 'end')
@@ -59,7 +58,7 @@ frm1 = tk.Frame(master=window, width=1080, height=720, background="grey")
 frm1.pack()
 
 main_label = tk.Label(master=frm1, text="Менеджер для сохранения настроек шрифтов",
-                      foreground="black", background="grey", font=("Bold", 14))
+                      foreground="black", background="grey", font=("Times", 14))
 main_label.place(relx=0, rely=0, relwidth=1)
 
 lblentry1 = tk.Label(master=frm1, text="Настройки шрифта:", background="grey", anchor="w", font=("Ariel", 14))
@@ -76,9 +75,6 @@ lbloutput = tk.Label(master=frm1, text="", background="white")
 lbloutput['text'] = "Заполните поля ввода"
 lbloutput['font'] = ("Times", 20)
 lbloutput['foreground'] = "red"
-
-#button1 = tk.Button(master=frm1, command=show_text, text="Вывести текст", font=("Times", 14))
-#button1.place(relx=0, rely=0.25)
 
 users = tk.Listbox(master=frm1, font=("Times", 16))
 users.place(relx=0.6, rely=0.09, relwidth=0.4)
