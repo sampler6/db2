@@ -22,7 +22,6 @@ def show_text():
 
 
 def update_entry():
-    print("-")
     global current_user, entry1, entry2
     try:
         user = users.selection_get()
