@@ -22,11 +22,12 @@ def show_text():
 
 
 def update_entry():
+    print("-")
     global current_user, entry1, entry2
     try:
         user = users.selection_get()
     except:
-        return
+        user = current_user
     if user in users.get(0, "end"):
         if current_user != "":
             save_entry(current_user)
@@ -35,9 +36,8 @@ def update_entry():
         entry1.delete(0, 'end')
         entry2.delete(0, 'end')
         user = "22304-korzhuk-" + user
-        tmp = conn.get(user)
-        if tmp is not None:
-            data = str(tmp.decode()).split("|")
+        if conn.get(user) is not None:
+            data = str(conn.get(user).decode()).split("|")
         else:
             return
         entry1.insert(0, data[0])
