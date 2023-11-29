@@ -11,7 +11,7 @@ def show_text():
 
     if len(font_settings) < 3 or len(text) == 0:
         lbloutput['text'] = "Заполните поля ввода"
-        lbloutput['font'] = ("Times", 14)
+        lbloutput['font'] = ("Times", 20)
         lbloutput['foreground'] = "red"
         return
 
@@ -34,6 +34,7 @@ def update_entry():
 
         entry1.delete(0, 'end')
         entry2.delete(0, 'end')
+        user = "22304-korzhuk-" + user
         tmp = conn.get(user)
         if tmp is not None:
             data = str(tmp.decode()).split("|")
@@ -62,32 +63,36 @@ main_label = tk.Label(master=frm1, text="Менеджер для сохране�
                       foreground="black", background="grey", font=("Bold", 14))
 main_label.place(relx=0, rely=0, relwidth=1)
 
-lblentry1 = tk.Label(master=frm1, text="Настройки шрифта:", background="grey", anchor="w")
+lblentry1 = tk.Label(master=frm1, text="Настройки шрифта:", background="grey", anchor="w", font=("Ariel", 14))
 entry1 = tk.Entry(master=frm1)
-lblentry1.place(relx=0, rely=0.1, relwidth=0.15)
-entry1.place(relx=0.12, rely=0.1, relwidth=0.3)
+lblentry1.place(relx=0, rely=0.1, relwidth=0.20)
+entry1.place(relx=0.20, rely=0.1, relwidth=0.3)
 
-lblentry2 = tk.Label(master=frm1, text="Текст сообщения:", background="grey", anchor="w")
+lblentry2 = tk.Label(master=frm1, text="Текст сообщения:", background="grey", anchor="w", font=("Ariel", 14))
 entry2 = tk.Entry(master=frm1)
-lblentry2.place(relx=0, rely=0.15, relwidth=0.15)
-entry2.place(relx=0.12, rely=0.15, relwidth=0.3)
+lblentry2.place(relx=0, rely=0.15, relwidth=0.20)
+entry2.place(relx=0.20, rely=0.15, relwidth=0.3)
 
 lbloutput = tk.Label(master=frm1, text="", background="white")
 lbloutput['text'] = "Заполните поля ввода"
-lbloutput['font'] = ("Times", 14)
+lbloutput['font'] = ("Times", 20)
 lbloutput['foreground'] = "red"
 
-button1 = tk.Button(master=frm1, command=show_text, text="Вывести текст")
-button1.place(relx=0, rely=0.25)
+#button1 = tk.Button(master=frm1, command=show_text, text="Вывести текст", font=("Times", 14))
+#button1.place(relx=0, rely=0.25)
 
-users = tk.Listbox(master=frm1)
-users.place(relx=0.8, rely=0.09, relwidth=0.2)
+users = tk.Listbox(master=frm1, font=("Times", 16))
+users.place(relx=0.6, rely=0.09, relwidth=0.4)
 users.bind('<<ListboxSelect>>', lambda event: update_entry())
+entry1.bind("<KeyRelease>", lambda event: update_entry())
+entry2.bind("<KeyRelease>", lambda event: update_entry())
 
 
-lbloutput.place(relx=0.0, rely=0.35)
-for i in range(6):
-    users.insert(i, f"Пользователь {i}")
+lbloutput.place(relx=0.0, rely=0.5)
+
+users.insert(0, "Коржук Никита Андреевич")
+users.insert(1, "Иванов Иван Иванович")
+users.insert(2, "Алексеев Алексей Алексеевич")
 users.select_set(0)
 update_entry()
 

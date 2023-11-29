@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import redis
+
 conn = redis.connection = redis.Redis(host='localhost', password="student")
 
 
@@ -51,24 +52,24 @@ for i in range(3):
     sportsmen_list.append(f"Спорстмен {i * 2 + 1}")
     sportsmen_list.append(f"Спорстмен {i * 2 + 2}")
 
-lbl_judges = tk.Label(master=frm1, text="Судья", background="grey")
-judges = ttk.Combobox(master=frm1, values=judges_list)
+lbl_judges = tk.Label(master=frm1, text="Судья", background="grey", font=("Times", 16))
+judges = ttk.Combobox(master=frm1, values=judges_list, font=("Times", 16))
 judges.place(relx=0.2, rely=0.2, relwidth=0.16)
 lbl_judges.place(relx=0.2, rely=0.15, relwidth=0.16)
 
-lbl_sportsmen = tk.Label(master=frm1, text="Спорстмен", background="grey")
-sportsmen = ttk.Combobox(master=frm1, values=sportsmen_list)
+lbl_sportsmen = tk.Label(master=frm1, text="Спорстмен", background="grey", font=("Times", 16))
+sportsmen = ttk.Combobox(master=frm1, values=sportsmen_list, font=("Times", 16))
 lbl_sportsmen.place(relx=0.64, rely=0.15, relwidth=0.16)
 sportsmen.place(relx=0.64, rely=0.2, relwidth=0.16)
 
-lbl_score = tk.Label(master=frm1, text="Баллы", background="grey")
-score = ttk.Combobox(master=frm1, values=list(map(lambda x: str(x), range(1, 11))))
+lbl_score = tk.Label(master=frm1, text="Баллы", background="grey", font=("Times", 16))
+score = ttk.Combobox(master=frm1, values=list(map(lambda x: str(x), range(1, 11))), font=("Times", 16))
 upd = tk.Button(text="Обновить", command=update)
 score.place(relx=0.46, relwidth=0.08, rely=0.2)
 lbl_score.place(relx=0.46, rely=0.15, relwidth=0.08)
 upd.place(relx=0.46, rely=0.25, relwidth=0.08)
 
-lstbox = tk.Listbox(master=frm1)
+lstbox = tk.Listbox(master=frm1, font=("Times", 16))
 lstbox.place(relx=0.3, rely=0.4, relwidth=0.4, relheight=0.6)
 
 score.set(0)
